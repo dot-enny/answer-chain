@@ -6,14 +6,19 @@ import { CTASection } from '@/components/landing/CTASection'
 import { Footer } from '@/components/landing/Footer'
 
 function LandingPage() {
+  // Main landing page component with modular sections
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Header with navigation */}
       <Header />
 
+      {/* Main content sections */}
       <HeroSection />
       <FeaturesSection />
       <TestimonialsSection />
       <CTASection />
+      
+      {/* Footer with newsletter and links */}
       <Footer />
     </div>
   )
