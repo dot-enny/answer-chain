@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import QuestionCard from '@/components/QuestionCard'
 import { academicCategories, mockQuestions } from '@/data/mockData'
-import { Search, Filter } from 'lucide-react'
+import { Search, Filter, Check } from 'lucide-react'
 
 function Home() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -78,31 +78,41 @@ function Home() {
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {academicCategories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              size="sm"
-              onClick={() => handleCategoryFilter(category.id)}
-              className="justify-start h-auto p-3"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-base">{category.icon}</span>
-                <div className="text-left">
-                  <div className="font-medium text-sm">{category.name}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {category.id === 'mathematics' ? '12 questions' : 
-                     category.id === 'computer-science' ? '18 questions' :
-                     category.id === 'physics' ? '8 questions' :
-                     category.id === 'chemistry' ? '6 questions' :
-                     category.id === 'biology' ? '14 questions' : 
-                     category.id === 'engineering' ? '9 questions' :
-                     category.id === 'medicine' ? '7 questions' : '5 questions'}
+          {academicCategories.map((category) => {
+            const isActive = selectedCategory === category.id
+            return (
+              <Button
+                key={category.id}
+                variant="outline"
+                size="sm"
+                onClick={() => handleCategoryFilter(category.id)}
+                className={`justify-start h-auto p-3 relative ${
+                  isActive 
+                    ? 'border-primary bg-primary/5 hover:bg-primary/10' 
+                    : 'hover:bg-accent'
+                }`}
+              >
+                <div className="flex items-center gap-2 w-full">
+                  <span className="text-base">{category.icon}</span>
+                  <div className="text-left flex-1">
+                    <div className="font-medium text-sm">{category.name}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {category.id === 'mathematics' ? '12 questions' : 
+                       category.id === 'computer-science' ? '18 questions' :
+                       category.id === 'physics' ? '8 questions' :
+                       category.id === 'chemistry' ? '6 questions' :
+                       category.id === 'biology' ? '14 questions' : 
+                       category.id === 'engineering' ? '9 questions' :
+                       category.id === 'medicine' ? '7 questions' : '5 questions'}
+                    </div>
                   </div>
+                  {isActive && (
+                    <Check className="h-4 w-4 text-primary ml-auto flex-shrink-0" />
+                  )}
                 </div>
-              </div>
-            </Button>
-          ))}
+              </Button>
+            )
+          })}
         </div>
       </div>
 
