@@ -1,0 +1,34 @@
+{
+  "name": "AnswerChain - Academic Q&A Platform",
+  "short_name": "AnswerChain",
+  "description": "Academic Q&A platform with blockchain-verified answers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e293b",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity", "academic"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ask Question",
+      "short_name": "Ask",
+      "description": "Ask a new academic question",
+      "url": "/ask",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
