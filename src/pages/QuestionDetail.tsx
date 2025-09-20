@@ -172,7 +172,7 @@ function QuestionDetail() {
           <h2 className="text-2xl font-semibold text-foreground">
             {questionAnswers.length} Answer{questionAnswers.length !== 1 ? 's' : ''}
           </h2>
-          <Button>
+          <Button className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
             Write an Answer
           </Button>
         </div>
@@ -182,7 +182,7 @@ function QuestionDetail() {
             <MessageCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">No answers yet</h3>
             <p className="text-muted-foreground mb-6">Be the first to answer this question!</p>
-            <Button size="lg">Write an Answer</Button>
+            <Button size="lg" className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">Write an Answer</Button>
           </div>
         ) : (
           <div className="relative">
