@@ -36,7 +36,7 @@ const iconMap = {
 const menuItems = [
   {
     title: "Home",
-    url: "/",
+    url: "/home",
     icon: Home,
   },
   {
@@ -92,7 +92,7 @@ function AppSidebar() {
                 return (
                 <SidebarMenuItem key={category.id}>
                   <SidebarMenuButton asChild>
-                    <Link to={`/?category=${category.id}`} className="justify-between">
+                    <Link to={`/home?category=${category.id}`} className="justify-between">
                       <div className="flex items-center gap-2">
                         {IconComponent && <IconComponent className="h-4 w-4" />}
                         <span className="text-sm">{category.name}</span>
