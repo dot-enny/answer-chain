@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import LandingPage from './pages/LandingPage'
 import QuestionDetail from './pages/QuestionDetail'
 import AskQuestion from './pages/AskQuestion'
 import NotFound from './pages/NotFound'
@@ -11,11 +12,15 @@ import NotFound from './pages/NotFound'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <LandingPage />,
     errorElement: <NotFound />,
+  },
+  {
+    path: "/",
+    element: <Layout />,
     children: [
       {
-        index: true,
+        path: "home",
         element: <Home />,
       },
       {
