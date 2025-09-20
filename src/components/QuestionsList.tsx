@@ -17,7 +17,7 @@ function QuestionsList({ questions, selectedCategory, searchQuery }: QuestionsLi
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-foreground font-serif">
+        <h2 className="text-2xl font-semibold text-foreground">
           {selectedCategoryData ? `${selectedCategoryData.name} Questions` : 'Recent Questions'}
         </h2>
       </div>
@@ -30,7 +30,7 @@ function QuestionsList({ questions, selectedCategory, searchQuery }: QuestionsLi
         </div>
       ) : (
         <div className="text-center py-12">
-          <div className="text-muted-foreground mb-4 font-serif">
+          <div className="text-muted-foreground mb-4">
             {searchQuery || selectedCategory 
               ? 'No questions found matching your criteria.' 
               : 'No questions yet.'}

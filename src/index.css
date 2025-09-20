@@ -6,13 +6,13 @@
 /* Custom styles can go here */
 
 /* Direct font loading for testing */
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@200..1000;0,200..1000;1,200..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 @theme inline {
 
-  /* Font families - fixed for Tailwind v4 */
-  --font-sans: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-serif: "Crimson Text", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Font families - Nunito for everything */
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -228,29 +228,29 @@
   
   /* Typography classes for academic content */
   .academic-content {
-    @apply font-serif leading-relaxed;
+    @apply leading-relaxed;
   }
   
   .code-content {
     @apply font-mono text-sm;
   }
   
-  /* UI elements use the softer Lora serif */
+  /* UI elements use Nunito */
   .ui-text {
     @apply font-sans;
   }
   
-  /* Enhanced heading styles - use serif for academic feel */
+  /* Enhanced heading styles - use Nunito for consistent, friendly design */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-semibold tracking-tight;
   }
   
-  /* Academic question title styling */
+  /* Academic question title styling - use Nunito for headings */
   .question-title {
     @apply font-serif font-semibold text-foreground;
   }
   
-  /* Navigation and UI elements - now using Lora (softer serif) */
+  /* Navigation and UI elements - use Nunito */
   nav, .sidebar, button, .badge, .input {
     @apply font-sans;
   }
@@ -260,8 +260,8 @@
     @apply font-mono;
   }
   
-  /* Mathematical content */
-  .math-content {
+  /* Mathematical content - use serif only for mathematical expressions/formulas */
+  .math-formula {
     @apply font-serif;
   }
 }

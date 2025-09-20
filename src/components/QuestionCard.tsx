@@ -45,7 +45,7 @@ function QuestionCard({ question }: QuestionCardProps) {
       </CardHeader>
       
       <CardContent className="pt-0">
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3 academic-content">
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
           {question.content}
         </p>
         

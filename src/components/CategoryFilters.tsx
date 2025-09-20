@@ -16,7 +16,7 @@ function CategoryFilters({ selectedCategory, onCategoryFilter }: CategoryFilters
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-foreground font-serif">Academic Categories</h2>
+        <h2 className="text-2xl font-semibold text-foreground">Academic Categories</h2>
         {selectedCategory && (
           <Button 
             variant="outline" 
