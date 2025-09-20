@@ -180,5 +180,86 @@ export const mockQuestions: Question[] = [
     answerCount: 4,
     timestamp: Date.now() - 28800000, // 8 hours ago
     tags: ['quantum-physics', 'many-body', 'entanglement', 'phase-transitions']
+  },
+  {
+    id: '6',
+    title: 'Structural analysis of reinforced concrete beams',
+    content: 'How do I calculate the moment capacity of a doubly reinforced concrete beam using the strain compatibility method? Looking for step-by-step approach.',
+    category: 'engineering',
+    level: 'Graduate',
+    author: {
+      id: 'user6',
+      name: 'Michael Torres',
+      institution: 'Georgia Tech',
+      verified: true
+    },
+    answerCount: 2,
+    timestamp: Date.now() - 32400000, // 9 hours ago
+    tags: ['structural-engineering', 'concrete', 'design']
+  },
+  {
+    id: '7',
+    title: 'Drug metabolism pathways and CYP450 enzymes',
+    content: 'Can someone explain the role of different CYP450 isoforms in drug metabolism? Particularly interested in drug-drug interactions.',
+    category: 'medicine',
+    level: 'PhD',
+    author: {
+      id: 'user7',
+      name: 'Dr. Rachel Kim',
+      institution: 'Johns Hopkins',
+      verified: true
+    },
+    answerCount: 6,
+    bounty: '0.08 ETH',
+    timestamp: Date.now() - 36000000, // 10 hours ago
+    tags: ['pharmacology', 'metabolism', 'drug-interactions']
+  },
+  {
+    id: '8',
+    title: 'Linear algebra: eigenvalues of symmetric matrices',
+    content: 'Why are all eigenvalues of a real symmetric matrix always real? I need a proof that doesn\'t rely on the spectral theorem.',
+    category: 'mathematics',
+    level: 'Undergraduate',
+    author: {
+      id: 'user8',
+      name: 'Emma Johnson',
+      institution: 'University of Michigan',
+      verified: true
+    },
+    answerCount: 3,
+    timestamp: Date.now() - 43200000, // 12 hours ago
+    tags: ['linear-algebra', 'eigenvalues', 'matrices']
+  },
+  {
+    id: '9',
+    title: 'Cognitive biases in decision-making research',
+    content: 'What are the most significant cognitive biases that affect human decision-making in economic contexts? Looking for recent meta-analyses.',
+    category: 'social-sciences',
+    level: 'Postdoc',
+    author: {
+      id: 'user9',
+      name: 'Dr. David Chen',
+      institution: 'Yale University',
+      verified: true
+    },
+    answerCount: 4,
+    timestamp: Date.now() - 50400000, // 14 hours ago
+    tags: ['psychology', 'behavioral-economics', 'decision-making']
+  },
+  {
+    id: '10',
+    title: 'Algorithm complexity: dynamic programming optimization',
+    content: 'How can I optimize this dynamic programming solution for the longest common subsequence problem? Currently getting O(n²) space complexity.',
+    category: 'computer-science',
+    level: 'Graduate',
+    author: {
+      id: 'user10',
+      name: 'Carlos Martinez',
+      institution: 'CMU',
+      verified: true
+    },
+    answerCount: 5,
+    timestamp: Date.now() - 57600000, // 16 hours ago
+    tags: ['algorithms', 'dynamic-programming', 'optimization']
   }
 ]
