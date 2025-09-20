@@ -149,30 +149,36 @@ function AppSidebar() {
   )
 }
 
+function AppHeader() {
+  return (
+    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+      <SidebarTrigger className="-ml-1" />
+      <Separator orientation="vertical" className="mr-2 h-4" />
+      <div className="flex items-center gap-2">
+        <Link 
+          to="/" 
+          className="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary/80 transition-colors tracking-tight"
+        >
+          <AnswerChainIcon className="w-6 h-6" />
+          AnswerChain
+        </Link>
+      </div>
+      <div className="ml-auto">
+        <Button variant="outline" size="sm">
+          <Wallet className="mr-2 h-4 w-4" />
+          Connect Wallet
+        </Button>
+      </div>
+    </header>
+  )
+}
+
 function Layout() {
   return (
     <SidebarProvider>
       <AppSidebar />
       <main className="flex-1">
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <div className="flex items-center gap-2">
-            <Link 
-              to="/" 
-              className="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary/80 transition-colors tracking-tight"
-            >
-              <AnswerChainIcon className="w-6 h-6" />
-              AnswerChain
-            </Link>
-          </div>
-          <div className="ml-auto">
-            <Button variant="outline" size="sm">
-              <Wallet className="mr-2 h-4 w-4" />
-              Connect Wallet
-            </Button>
-          </div>
-        </header>
+        <AppHeader />
         <div className="flex-1 p-6">
           <div className="max-w-4xl mx-auto">
             <Outlet />
