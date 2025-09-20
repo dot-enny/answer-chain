@@ -34,7 +34,7 @@ function QuestionCard({ question }: QuestionCardProps) {
                 {question.level}
               </Badge>
               {question.bounty && (
-                <Badge variant="default" className="text-xs bg-emerald-600 hover:bg-emerald-700">
+                <Badge variant="default" className="text-xs bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
                   <Trophy className="w-3 h-3 mr-1" />
                   {question.bounty}
                 </Badge>
@@ -62,7 +62,7 @@ function QuestionCard({ question }: QuestionCardProps) {
           
           <div className="flex items-center gap-1 ml-auto">
             {question.author.verified && (
-              <CheckCircle className="w-4 h-4 text-emerald-500" />
+              <CheckCircle className="w-4 h-4 text-[var(--accent-orange)]" />
             )}
             <span className="font-medium text-foreground">{question.author.name}</span>
             <span className="text-xs">• {question.author.institution}</span>

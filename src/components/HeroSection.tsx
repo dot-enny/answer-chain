@@ -11,7 +11,7 @@ function HeroSection() {
         Connect with experts and get verified answers to your questions through blockchain-powered verification.
       </p>
       <div className="pt-4">
-        <Button asChild size="lg" className="text-lg px-8 py-6">
+        <Button asChild size="lg" className="text-lg px-8 py-6 bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
           <Link to="/ask">Ask a New Question</Link>
         </Button>
       </div>
