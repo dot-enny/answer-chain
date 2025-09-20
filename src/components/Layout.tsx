@@ -1,44 +1,170 @@
 import { Outlet, Link } from 'react-router-dom'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import { Badge } from '@/components/ui/badge'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+import { Home, Plus, Wallet } from 'lucide-react'
+import { academicCategories } from '@/data/mockData'
+import AnswerChainIcon from './AnswerChainIcon'
+
+const menuItems = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
+  {
+    title: "Ask Question",
+    url: "/ask",
+    icon: Plus,
+  },
+]
+
+function AppSidebar() {
+  return (
+    <Sidebar>
+      <SidebarHeader>
+        <div className="px-2 py-2">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 text-2xl font-bold text-primary hover:text-primary/80 transition-colors tracking-tight"
+          >
+            <AnswerChainIcon className="w-8 h-8" />
+            AnswerChain
+          </Link>
+          <p className="text-sm text-muted-foreground mt-1 ml-10">
+            Ask. Answer. Verify.
+          </p>
+        </div>
+      </SidebarHeader>
+      
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        
+        <SidebarGroup>
+          <SidebarGroupLabel>Academic Fields</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {academicCategories.slice(0, 6).map((category) => (
+                <SidebarMenuItem key={category.id}>
+                  <SidebarMenuButton asChild>
+                    <Link to={`/?category=${category.id}`} className="justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base">{category.icon}</span>
+                        <span className="text-sm">{category.name}</span>
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {category.id === 'mathematics' ? '12' : 
+                         category.id === 'computer-science' ? '18' :
+                         category.id === 'physics' ? '8' :
+                         category.id === 'chemistry' ? '6' :
+                         category.id === 'biology' ? '14' : '5'}
+                      </Badge>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        
+        <SidebarGroup>
+          <SidebarGroupLabel>Quick Stats</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <div className="px-2 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Questions</span>
+                <span className="text-foreground font-medium">42</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Answers</span>
+                <span className="text-foreground font-medium">127</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Verified</span>
+                <span className="text-primary font-medium">89</span>
+              </div>
+            </div>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+      
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Button variant="outline" className="w-full justify-start">
+                <Wallet />
+                <span>Connect Wallet</span>
+              </Button>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+    </Sidebar>
+  )
+}
 
 function Layout() {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
-      <nav className="bg-slate-800 px-4 sm:px-6 py-4 shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <div className="nav-brand">
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="flex-1">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <div className="flex items-center gap-2">
             <Link 
               to="/" 
-              className="text-white text-xl font-bold hover:text-blue-400 transition-colors"
+              className="flex items-center gap-2 text-xl font-bold text-primary hover:text-primary/80 transition-colors tracking-tight"
             >
-              My React App
+              <AnswerChainIcon className="w-6 h-6" />
+              AnswerChain
             </Link>
           </div>
-          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
-            <Link 
-              to="/" 
-              className="text-white hover:bg-slate-700 px-3 py-2 rounded-md transition-colors text-center"
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-white hover:bg-slate-700 px-3 py-2 rounded-md transition-colors text-center"
-            >
-              About
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-white hover:bg-slate-700 px-3 py-2 rounded-md transition-colors text-center"
-            >
-              Contact
-            </Link>
+          <div className="ml-auto">
+            <Button variant="outline" size="sm">
+              <Wallet className="mr-2 h-4 w-4" />
+              Connect Wallet
+            </Button>
+          </div>
+        </header>
+        <div className="flex-1 p-6">
+          <div className="max-w-4xl mx-auto">
+            <Outlet />
           </div>
         </div>
-      </nav>
-      <main className="flex-1 p-4 sm:p-8 max-w-7xl mx-auto w-full">
-        <Outlet />
       </main>
-    </div>
+    </SidebarProvider>
   )
 }
 
