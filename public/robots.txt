@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://answerchain.app/sitemap.xml
+Sitemap: https://answer-chain.vercel.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
