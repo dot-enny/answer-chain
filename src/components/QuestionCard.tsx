@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Question, academicCategories } from '@/data/mockData'
+import { Question, academicCategories, mockAnswers } from '@/data/mockData'
 import { MessageCircle, Trophy, Clock, CheckCircle, Calculator, Atom, Laptop, TestTube, Dna, Settings, Heart, Users } from 'lucide-react'
 
 // Map icon names to Lucide icon components
@@ -25,13 +25,16 @@ function QuestionCard({ question }: QuestionCardProps) {
   const timeAgo = getTimeAgo(question.timestamp)
   const IconComponent = category ? iconMap[category.icon as keyof typeof iconMap] : null
   
+  // Calculate actual answer count from mockAnswers
+  const actualAnswerCount = mockAnswers.filter(answer => answer.questionId === question.id).length
+  
   return (
     <Card className="hover:shadow-md transition-shadow">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 space-y-2">
             <Link 
-              to={`/questions/${question.id}`}
+              to={`/question/${question.id}`}
               className="text-lg font-semibold text-foreground hover:text-primary transition-colors line-clamp-2 question-title"
             >
               {question.title}
@@ -65,7 +68,7 @@ function QuestionCard({ question }: QuestionCardProps) {
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1">
             <MessageCircle className="w-4 h-4" />
-            <span>{question.answerCount} answers</span>
+            <span>{actualAnswerCount} answer{actualAnswerCount !== 1 ? 's' : ''}</span>
           </div>
           
           <div className="flex items-center gap-1">
