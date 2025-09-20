@@ -43,8 +43,7 @@ function SearchAndFilter({
       {selectedCategoryData && (
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">Filtering by:</span>
-          <Badge variant="default" className="gap-1">
-            <span>{selectedCategoryData.icon}</span>
+          <Badge variant="outline" className="border-primary/20 text-primary bg-primary/5">
             {selectedCategoryData.name}
           </Badge>
         </div>
