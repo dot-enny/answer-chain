@@ -263,3 +263,174 @@ export const mockQuestions: Question[] = [
     tags: ['algorithms', 'dynamic-programming', 'optimization']
   }
 ]
+
+export const mockAnswers: Answer[] = [
+  {
+    id: 'a1',
+    questionId: '1',
+    content: 'You can use the comparison test with 1/n². Since 1/(n²+1) < 1/n² for all n ≥ 1, and ∑(1/n²) converges (p-series with p=2 > 1), then ∑(1/(n²+1)) also converges by the comparison test.\n\nAlternatively, you can use the limit comparison test: lim(n→∞) [1/(n²+1)] / [1/n²] = lim(n→∞) n²/(n²+1) = 1, which is finite and positive, so both series have the same convergence behavior.',
+    author: {
+      id: 'user_ans1',
+      name: 'Dr. Sarah Chen',
+      institution: 'MIT',
+      verified: true
+    },
+    verified: true,
+    citations: 12,
+    timestamp: Date.now() - 14400000 // 4 hours ago
+  },
+  {
+    id: 'a2',
+    questionId: '1',
+    content: 'Another approach is to use the integral test. Consider f(x) = 1/(x²+1). The integral ∫[1,∞] 1/(x²+1) dx = [arctan(x)]₁^∞ = π/2 - π/4 = π/4, which converges.\n\nSince f(x) is positive, continuous, and decreasing for x ≥ 1, the series ∑(1/(n²+1)) converges by the integral test.',
+    author: {
+      id: 'user_ans2',
+      name: 'Prof. Michael Johnson',
+      institution: 'Harvard',
+      verified: true
+    },
+    verified: false,
+    citations: 8,
+    timestamp: Date.now() - 18000000 // 5 hours ago
+  },
+  {
+    id: 'a3',
+    questionId: '1',
+    content: 'You could also note that 1/(n²+1) ≤ 1/n² and use the fact that the Basel problem shows ∑(1/n²) = π²/6. This gives an upper bound for the partial sums.',
+    author: {
+      id: 'user_ans12',
+      name: 'Prof. Lisa Wang',
+      institution: 'Caltech',
+      verified: true
+    },
+    verified: false,
+    citations: 4,
+    timestamp: Date.now() - 21600000 // 6 hours ago
+  },
+  {
+    id: 'a4',
+    questionId: '2',
+    content: 'For small datasets with transformers, I recommend:\n\n1. **Start with a smaller model**: Use DistilBERT or ALBERT instead of full BERT\n2. **Gradual unfreezing**: Freeze most layers initially, then gradually unfreeze\n3. **Lower learning rates**: Use 1e-5 to 5e-5 for fine-tuning\n4. **Data augmentation**: Use techniques like back-translation or paraphrasing\n5. **Early stopping**: Monitor validation loss closely\n6. **Few-shot learning**: Consider using prompt-based approaches or adapters\n\nWith 10k samples, you should be able to get decent results, but be careful of overfitting.',
+    author: {
+      id: 'user_ans4',
+      name: 'Dr. Alex Rodriguez',
+      institution: 'Stanford',
+      verified: true
+    },
+    verified: true,
+    citations: 15,
+    timestamp: Date.now() - 10800000 // 3 hours ago
+  },
+  {
+    id: 'a5',
+    questionId: '2',
+    content: 'I\'d add to the previous answer: consider using task-adaptive pretraining if you have unlabeled data in your domain. Also, regularization techniques like dropout and weight decay are crucial with small datasets.',
+    author: {
+      id: 'user_ans5',
+      name: 'Maria Kim',
+      institution: 'Google Research',
+      verified: true
+    },
+    verified: false,
+    citations: 7,
+    timestamp: Date.now() - 12600000 // 3.5 hours ago
+  },
+  {
+    id: 'a6',
+    questionId: '2',
+    content: 'Don\'t forget about cross-validation! With only 10k samples, proper validation strategy is crucial. Use stratified k-fold to ensure balanced splits.',
+    author: {
+      id: 'user_ans6',
+      name: 'Prof. David Chen',
+      institution: 'MIT',
+      verified: true
+    },
+    verified: false,
+    citations: 3,
+    timestamp: Date.now() - 16200000 // 4.5 hours ago
+  },
+  {
+    id: 'a7',
+    questionId: '2',
+    content: 'Consider using simpler models as baselines first. Sometimes a well-tuned LSTM or even classical ML approaches perform surprisingly well on small datasets.',
+    author: {
+      id: 'user_ans7',
+      name: 'Dr. Jennifer Liu',
+      institution: 'UC Berkeley',
+      verified: false
+    },
+    verified: false,
+    citations: 2,
+    timestamp: Date.now() - 19800000 // 5.5 hours ago
+  },
+  {
+    id: 'a8',
+    questionId: '2',
+    content: 'Ensemble methods can help too - train multiple models with different random seeds and average their predictions.',
+    author: {
+      id: 'user_ans8',
+      name: 'Sam Wilson',
+      institution: 'OpenAI',
+      verified: true
+    },
+    verified: false,
+    citations: 5,
+    timestamp: Date.now() - 23400000 // 6.5 hours ago
+  },
+  {
+    id: 'a9',
+    questionId: '2',
+    content: 'If you\'re doing text classification, consider using sentence transformers for feature extraction followed by a simple classifier. Sometimes this works better than full fine-tuning.',
+    author: {
+      id: 'user_ans9',
+      name: 'Dr. Robert Zhang',
+      institution: 'Carnegie Mellon',
+      verified: true
+    },
+    verified: false,
+    citations: 6,
+    timestamp: Date.now() - 25200000 // 7 hours ago
+  },
+  {
+    id: 'a10',
+    questionId: '2',
+    content: 'Meta-learning approaches like MAML can be effective for few-shot scenarios if you have related tasks.',
+    author: {
+      id: 'user_ans10',
+      name: 'Dr. Emily Brown',
+      institution: 'DeepMind',
+      verified: true
+    },
+    verified: false,
+    citations: 4,
+    timestamp: Date.now() - 27000000 // 7.5 hours ago
+  },
+  {
+    id: 'a11',
+    questionId: '3',
+    content: 'Tertiary carbons have three alkyl groups attached, creating severe steric hindrance. In SN2 reactions, the nucleophile must approach from the backside (opposite to the leaving group) to achieve the required orbital overlap for bond formation.\n\nWith tertiary substrates, the three bulky alkyl groups block this backside approach, making the SN2 mechanism impossible. The HOMO-LUMO interaction between the nucleophile and the σ* orbital of the C-X bond cannot occur due to steric obstruction.\n\nThis is why tertiary substrates favor SN1 mechanisms instead, where the reaction proceeds through a carbocation intermediate.',
+    author: {
+      id: 'user_ans11',
+      name: 'Dr. Maria Rodriguez',
+      institution: 'UC Berkeley',
+      verified: true
+    },
+    verified: true,
+    citations: 9,
+    timestamp: Date.now() - 28800000 // 8 hours ago
+  },
+  {
+    id: 'a12',
+    questionId: '3',
+    content: 'To add to the previous answer: you can visualize this with molecular models. The three substituents on a tertiary carbon create a "cone of blocking" that prevents nucleophilic attack from the required 180° angle.',
+    author: {
+      id: 'user_ans13',
+      name: 'Prof. James Wilson',
+      institution: 'Harvard',
+      verified: true
+    },
+    verified: false,
+    citations: 4,
+    timestamp: Date.now() - 32400000 // 9 hours ago
+  }
+]
