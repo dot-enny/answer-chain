@@ -5,7 +5,15 @@
 
 /* Custom styles can go here */
 
+/* Direct font loading for testing */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 @theme inline {
+
+  /* Font families - fixed for Tailwind v4 */
+  --font-sans: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Crimson Text", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
 
@@ -215,6 +223,45 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Typography classes for academic content */
+  .academic-content {
+    @apply font-serif leading-relaxed;
+  }
+  
+  .code-content {
+    @apply font-mono text-sm;
+  }
+  
+  /* UI elements use the softer Lora serif */
+  .ui-text {
+    @apply font-sans;
+  }
+  
+  /* Enhanced heading styles - use serif for academic feel */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-semibold tracking-tight;
+  }
+  
+  /* Academic question title styling */
+  .question-title {
+    @apply font-serif font-semibold text-foreground;
+  }
+  
+  /* Navigation and UI elements - now using Lora (softer serif) */
+  nav, .sidebar, button, .badge, .input {
+    @apply font-sans;
+  }
+  
+  /* Enhanced code blocks */
+  pre, code {
+    @apply font-mono;
+  }
+  
+  /* Mathematical content */
+  .math-content {
+    @apply font-serif;
   }
 }
