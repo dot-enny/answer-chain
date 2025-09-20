@@ -1,25 +1,28 @@
 import { useParams, Link } from 'react-router-dom'
+import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { mockQuestions, mockAnswers, academicCategories } from '@/data/mockData'
-import { 
-  ArrowLeft, 
-  Clock, 
-  Trophy, 
-  CheckCircle, 
-  ThumbsUp, 
-  ThumbsDown, 
-  Share, 
+import {
+  ArrowLeft,
+  Clock,
+  Trophy,
+  CheckCircle,
+  ThumbsUp,
+  ThumbsDown,
+  Share,
   Bookmark,
   MessageCircle,
-  Calculator, 
-  Atom, 
-  Laptop, 
-  TestTube, 
-  Dna, 
-  Settings, 
-  Heart, 
-  Users 
+  Calculator,
+  Atom,
+  Laptop,
+  TestTube,
+  Dna,
+  Settings,
+  Heart,
+  Users
 } from 'lucide-react'
 
 // Map icon names to Lucide icon components
@@ -36,10 +39,10 @@ const iconMap = {
 
 function QuestionDetail() {
   const { id } = useParams<{ id: string }>()
-  
+
   // Find the question by ID
   const question = mockQuestions.find(q => q.id === id)
-  
+
   if (!question) {
     return (
       <div className="text-center space-y-6">
@@ -79,7 +82,7 @@ function QuestionDetail() {
             <h1 className="text-4xl font-bold text-foreground leading-tight">
               {question.title}
             </h1>
-            
+
             {/* Question Metadata */}
             <div className="flex items-center gap-4 flex-wrap">
               {category && (
@@ -120,7 +123,7 @@ function QuestionDetail() {
             </Button>
           </div>
         </div>
-        
+
         {/* Question Content */}
         <div className="prose prose-lg prose-gray dark:prose-invert max-w-none">
           <p className="text-foreground leading-relaxed whitespace-pre-wrap text-lg">
@@ -172,9 +175,11 @@ function QuestionDetail() {
           <h2 className="text-2xl font-semibold text-foreground">
             {questionAnswers.length} Answer{questionAnswers.length !== 1 ? 's' : ''}
           </h2>
-          <Button className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
-            Write an Answer
-          </Button>
+          <AnswerSubmissionModal questionTitle={question.title}>
+            <Button className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
+              Write an Answer
+            </Button>
+          </AnswerSubmissionModal>
         </div>
 
         {questionAnswers.length === 0 ? (
@@ -182,7 +187,11 @@ function QuestionDetail() {
             <MessageCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">No answers yet</h3>
             <p className="text-muted-foreground mb-6">Be the first to answer this question!</p>
-            <Button size="lg" className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">Write an Answer</Button>
+            <AnswerSubmissionModal questionTitle={question.title}>
+              <Button size="lg" className="bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]">
+                Write an Answer
+              </Button>
+            </AnswerSubmissionModal>
           </div>
         ) : (
           <div className="relative">
@@ -201,15 +210,14 @@ function QuestionDetail() {
                     {index < questionAnswers.length - 1 && (
                       <div className="absolute left-6 top-12 w-0.5 h-full bg-border"></div>
                     )}
-                    
+
                     {/* Timeline Node */}
-                    <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center border-4 border-background z-10 ${
-                      answer.verified 
-                        ? 'bg-green-500 text-white' 
-                        : answer.author.verified 
+                    <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center border-4 border-background z-10 ${answer.verified
+                        ? 'bg-green-500 text-white'
+                        : answer.author.verified
                           ? 'bg-[var(--accent-orange)] text-[var(--accent-orange-foreground)]'
                           : 'bg-primary text-primary-foreground'
-                    }`}>
+                      }`}>
                       {answer.verified ? (
                         <CheckCircle className="w-6 h-6" />
                       ) : (
@@ -283,11 +291,98 @@ function getTimeAgo(timestamp: number): string {
   const minutes = Math.floor(diff / 60000)
   const hours = Math.floor(diff / 3600000)
   const days = Math.floor(diff / 86400000)
-  
+
   if (days > 0) return `${days}d ago`
   if (hours > 0) return `${hours}h ago`
   if (minutes > 0) return `${minutes}m ago`
   return 'Just now'
+}
+
+function AnswerSubmissionModal({ children, questionTitle }: { children: React.ReactNode, questionTitle: string }) {
+  const [answerContent, setAnswerContent] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleSubmit = async () => {
+    if (!answerContent.trim()) return
+
+    setIsSubmitting(true)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
+    // Reset form and close modal
+    setAnswerContent('')
+    setIsSubmitting(false)
+    setIsOpen(false)
+
+    // Here you would typically dispatch an action to add the answer
+    console.log('Submitting answer:', answerContent)
+  }
+
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        {children}
+      </SheetTrigger>
+      <SheetContent side="right" className="w-full sm:max-w-lg flex flex-col h-full">
+        <SheetHeader className="space-y-3 px-6 pt-6 pb-4 border-b">
+          <SheetTitle className="text-left">Write Your Answer</SheetTitle>
+          <SheetDescription className="text-left">
+            Responding to: <span className="font-medium">{questionTitle}</span>
+          </SheetDescription>
+        </SheetHeader>
+
+        <div className="flex-1 overflow-y-auto px-6 py-6">
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-foreground mb-4">
+                Your Answer
+              </label>
+              <Textarea
+                placeholder="Share your knowledge and help others learn...
+
+Be specific and explain your reasoning. Include relevant examples and sources when possible."
+                value={answerContent}
+                onChange={(e) => setAnswerContent(e.target.value)}
+                className="min-h-[250px] resize-none"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <div className="text-sm text-muted-foreground">
+                <h4 className="font-medium text-foreground mb-2">Tips for a great answer:</h4>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li>Explain your reasoning step by step</li>
+                  <li>Include relevant examples or analogies</li>
+                  <li>Cite sources when applicable</li>
+                  <li>Be clear and concise</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t px-6 py-4">
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setIsOpen(false)}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSubmit}
+              disabled={!answerContent.trim() || isSubmitting}
+              className="flex-1 bg-[var(--accent-orange)] hover:bg-[var(--accent-orange)]/90 text-[var(--accent-orange-foreground)]"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Answer'}
+            </Button>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
 }
 
 export default QuestionDetail
