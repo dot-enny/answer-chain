@@ -1,4 +1,5 @@
 import { Outlet, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
@@ -150,8 +151,32 @@ function AppSidebar() {
 }
 
 function AppHeader() {
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Show header when scrolling up or at the top
+      if (currentScrollY < lastScrollY || currentScrollY < 10) {
+        setIsVisible(true)
+      } else {
+        // Hide header when scrolling down (but not if we're near the top)
+        setIsVisible(false)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   return (
-    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+    <header className={`sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-transform duration-300 ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="mr-2 h-4" />
       <div className="flex items-center gap-2">
