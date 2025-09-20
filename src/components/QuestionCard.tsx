@@ -2,7 +2,19 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Question, academicCategories } from '@/data/mockData'
-import { MessageCircle, Trophy, Clock, CheckCircle } from 'lucide-react'
+import { MessageCircle, Trophy, Clock, CheckCircle, Calculator, Atom, Laptop, TestTube, Dna, Settings, Heart, Users } from 'lucide-react'
+
+// Map icon names to Lucide icon components
+const iconMap = {
+  Calculator,
+  Atom,
+  Laptop,
+  TestTube,
+  Dna,
+  Settings,
+  Heart,
+  Users,
+}
 
 interface QuestionCardProps {
   question: Question
@@ -11,6 +23,7 @@ interface QuestionCardProps {
 function QuestionCard({ question }: QuestionCardProps) {
   const category = academicCategories.find(cat => cat.id === question.category)
   const timeAgo = getTimeAgo(question.timestamp)
+  const IconComponent = category ? iconMap[category.icon as keyof typeof iconMap] : null
   
   return (
     <Card className="hover:shadow-md transition-shadow">
@@ -26,7 +39,7 @@ function QuestionCard({ question }: QuestionCardProps) {
             <div className="flex items-center gap-2 flex-wrap">
               {category && (
                 <Badge variant="secondary" className="text-xs">
-                  <span className="mr-1">{category.icon}</span>
+                  {IconComponent && <IconComponent className="h-3 w-3 mr-1" />}
                   {category.name}
                 </Badge>
               )}

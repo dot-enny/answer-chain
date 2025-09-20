@@ -16,9 +16,21 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { Home, Plus, Wallet } from 'lucide-react'
+import { Home, Plus, Wallet, Calculator, Atom, Laptop, TestTube, Dna, Settings, Heart, Users } from 'lucide-react'
 import { academicCategories } from '@/data/mockData'
 import AnswerChainIcon from './AnswerChainIcon'
+
+// Map icon names to Lucide icon components
+const iconMap = {
+  Calculator,
+  Atom,
+  Laptop,
+  TestTube,
+  Dna,
+  Settings,
+  Heart,
+  Users,
+}
 
 const menuItems = [
   {
@@ -74,12 +86,14 @@ function AppSidebar() {
           <SidebarGroupLabel>Academic Fields</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {academicCategories.slice(0, 6).map((category) => (
+              {academicCategories.slice(0, 6).map((category) => {
+                const IconComponent = iconMap[category.icon as keyof typeof iconMap]
+                return (
                 <SidebarMenuItem key={category.id}>
                   <SidebarMenuButton asChild>
                     <Link to={`/?category=${category.id}`} className="justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="text-base">{category.icon}</span>
+                        {IconComponent && <IconComponent className="h-4 w-4" />}
                         <span className="text-sm">{category.name}</span>
                       </div>
                       <Badge variant="secondary" className="text-xs">
@@ -92,7 +106,8 @@ function AppSidebar() {
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-              ))}
+                )
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

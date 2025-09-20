@@ -43,56 +43,56 @@ export const academicCategories = [
   {
     id: 'mathematics',
     name: 'Mathematics',
-    icon: '📐',
+    icon: 'Calculator',
     color: 'bg-blue-500',
     subcategories: ['Algebra', 'Calculus', 'Statistics', 'Discrete Math']
   },
   {
     id: 'physics',
     name: 'Physics',
-    icon: '⚛️',
+    icon: 'Atom',
     color: 'bg-purple-500',
     subcategories: ['Quantum Physics', 'Mechanics', 'Thermodynamics', 'Electromagnetism']
   },
   {
     id: 'computer-science',
     name: 'Computer Science',
-    icon: '💻',
+    icon: 'Laptop',
     color: 'bg-green-500',
     subcategories: ['Algorithms', 'Machine Learning', 'Software Engineering', 'Cybersecurity']
   },
   {
     id: 'chemistry',
     name: 'Chemistry',
-    icon: '🧪',
+    icon: 'TestTube',
     color: 'bg-orange-500',
     subcategories: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry', 'Biochemistry']
   },
   {
     id: 'biology',
     name: 'Biology',
-    icon: '🧬',
+    icon: 'Dna',
     color: 'bg-emerald-500',
     subcategories: ['Molecular Biology', 'Genetics', 'Ecology', 'Neuroscience']
   },
   {
     id: 'engineering',
     name: 'Engineering',
-    icon: '⚙️',
+    icon: 'Settings',
     color: 'bg-gray-500',
     subcategories: ['Mechanical', 'Electrical', 'Civil', 'Chemical Engineering']
   },
   {
     id: 'medicine',
     name: 'Medicine',
-    icon: '🏥',
+    icon: 'Heart',
     color: 'bg-red-500',
     subcategories: ['Clinical Medicine', 'Pharmacology', 'Public Health', 'Medical Research']
   },
   {
     id: 'social-sciences',
     name: 'Social Sciences',
-    icon: '👥',
+    icon: 'Users',
     color: 'bg-indigo-500',
     subcategories: ['Psychology', 'Sociology', 'Anthropology', 'Political Science']
   }
