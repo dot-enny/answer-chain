@@ -8,6 +8,8 @@ import LandingPage from './pages/LandingPage'
 import QuestionDetail from './pages/QuestionDetail'
 import AskQuestion from './pages/AskQuestion'
 import NotFound from './pages/NotFound'
+// FIXED: Import WalletProvider
+import { WalletProvider } from './contexts/WalletContext'
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,11 @@ const router = createBrowserRouter([
   },
 ])
 
+// FIXED: Wrap the entire app with WalletProvider
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <WalletProvider>
+      <RouterProvider router={router} />
+    </WalletProvider>
   </StrictMode>,
 )

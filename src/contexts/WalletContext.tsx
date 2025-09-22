@@ -1,9 +1,26 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Connection, PublicKey } from "@solana/web3.js";
 
-const DEFAULT_RPC = process.env.REACT_APP_RPC_URL || "";
-const TOKEN_MINT = process.env.REACT_APP_TOKEN_MINT || "";
-const API_URL = process.env.REACT_APP_API_URL || ""; // if empty, fetch uses relative path
+// FIXED: Use import.meta.env for Vite or fallback to window for other bundlers
+const getEnvVar = (key: string) => {
+  // Try Vite first
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env[key];
+  }
+  // Try webpack/CRA
+  if (typeof process !== 'undefined' && process.env) {
+    return process.env[key];
+  }
+  // Try window global (fallback)
+  if (typeof window !== 'undefined' && (window as any).env) {
+    return (window as any).env[key];
+  }
+  return undefined;
+};
+
+const DEFAULT_RPC = getEnvVar("REACT_APP_RPC_URL") || getEnvVar("VITE_RPC_URL") || "https://api.devnet.solana.com";
+const TOKEN_MINT = getEnvVar("REACT_APP_TOKEN_MINT") || getEnvVar("VITE_TOKEN_MINT") || "";
+const API_URL = getEnvVar("REACT_APP_API_URL") || getEnvVar("VITE_API_URL") || ""; // if empty, fetch uses relative path
 
 type WalletContextValue = {
   publicKey: PublicKey | null;
@@ -97,7 +114,7 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }
 
   async function refreshTokenBalance() {
-    if (!publicKey) {
+    if (!publicKey || !TOKEN_MINT) {
       setTokenBalance(null);
       return;
     }
@@ -137,6 +154,9 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return { success: false, error: err?.message || "Network error" };
     }
   }
+
+  // Debug: log env vars (remove in production)
+  console.log("Env vars loaded:", { DEFAULT_RPC, TOKEN_MINT: TOKEN_MINT ? "SET" : "NOT_SET", API_URL });
 
   return (
     <WalletContext.Provider
